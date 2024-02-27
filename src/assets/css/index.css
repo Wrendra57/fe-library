@@ -1,0 +1,54 @@
+:root {
+    background-color: #f8fafc;
+}
+
+.font-12{
+    font-size: 12px;
+}
+p {
+    margin-bottom: 0px;
+}
+
+.form-floating .form-control-file {
+  height: calc(2.25rem + 2px); /* Match Bootstrap's default input height */
+  cursor: pointer;
+}
+
+.form-floating .form-control-file:focus ~ label {
+  top: -12px; /* Adjust label position on focus */
+  font-size: 1rem;
+  color: #212529;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.upload-images:hover {
+    background-color: #cacccf;
+    border-color: #72aae1;
+    border-width: 3px;
+}
+	.profile-picture {
+		width: 200px;
+		height: 200px;
+		object-fit: cover;
+	}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .login{
+        width: 50% !important
+    }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  }
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { }
