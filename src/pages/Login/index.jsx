@@ -13,8 +13,8 @@ import {
   emptyToken,
   emptyUser,
 } from "../../store/slices/authSlice";
-import NavBar from "../../components/navbar";
-// import { FiUser } from "react-icons/fi";
+import { NavBar, CustomTitle } from "../../components";
+
 function LoginPage() {
   const dispatch = useDispatch();
   const formRef = useRef({});
@@ -63,7 +63,6 @@ function LoginPage() {
       email: email.value,
       password: password.value,
     };
-    console.log(payload);
 
     loginHit({ body: payload });
   };
@@ -74,16 +73,14 @@ function LoginPage() {
       dispatch(addToken(dataLogin.data.token));
       if (formRef.current.ingatSaya.checked) {
         localStorage.setItem("token", dataLogin.data.token);
-        // localStorage.setItem("uuid", dataLogin.data.uuid);
+
         localStorage.setItem("email", formRef.current.email.value);
       }
       console.log(dataLogin.data.token);
       navigate("/");
     }
-    // console.log(email);
 
     if (isError) {
-      console.log(errorLogin);
       setError((error) => ({
         ...error,
         errorLogin: errorLogin.data.status,
@@ -94,6 +91,7 @@ function LoginPage() {
 
   return (
     <>
+      <CustomTitle title={"login library"} />
       <NavBar />
       <Container className="h-100">
         <div className="login d-flex flex-column mb-3 justify-content-center align-items-center w-100 p-3 m-auto my-5 card gap-3">

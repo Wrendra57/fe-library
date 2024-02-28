@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-prototype-builtins */
 import { useEffect, useRef, useState } from "react";
-import NavBar from "../../../components/navbar";
+import { NavBar, CustomTitle } from "../../../components";
 import Container from "react-bootstrap/esm/Container";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ function RegisterPage() {
     dispatch(emptyEmail());
     dispatch(emptyUser());
   }, []);
-  
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setError({});
@@ -43,7 +43,7 @@ function RegisterPage() {
     const telp = formRef.current.telp;
     const bdate = formRef.current.bdate;
     const address = formRef.current.address;
-    console.log(bdate.value);
+
     if (name.value === "") {
       setError((err) => ({
         ...err,
@@ -190,6 +190,7 @@ function RegisterPage() {
 
   return (
     <>
+      <CustomTitle title={"Register library App"} />
       <NavBar />
       <Container className="h-100">
         <div className="login d-flex flex-column mb-3 justify-content-center align-items-center w-100 p-3 m-auto my-5 card gap-3">

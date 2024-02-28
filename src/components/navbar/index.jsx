@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthenticateMutation } from "../../store/apis/authentication";
 import { useEffect } from "react";
 import {
@@ -15,15 +15,11 @@ import {
 } from "../../store/slices/authSlice";
 
 function NavBar() {
-  const location = useLocation();
-  // console.log(location.pathname);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.auth.user);
 
-  console.log(user);
-  // console.log(token === "");
   const [
     currentUserHit,
     { isLoading, isError, error: errorAuthenticate, isSuccess, data: dataUser },
@@ -40,22 +36,12 @@ function NavBar() {
   }, []);
   useEffect(() => {
     if (isSuccess) {
-      // dispatch(addEmail(formRef.current.email.value));
-      // dispatch(addToken(dataLogin.data.token));
       dispatch(addUser(dataUser.data));
-      console.log(dataUser);
-      // navigate("/login");
     }
-    // console.log(email);
 
     if (isError) {
       console.log(errorAuthenticate);
       navigate("/");
-
-      // setError((error) => ({
-      //   ...error,
-      //   errorRegister: errorRegister,
-      // }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
@@ -65,14 +51,7 @@ function NavBar() {
     dispatch(emptyUser());
     navigate("/login");
   };
-  // const handleLogin = () => {
-  //   handleLogOut();
-  //   navigate("/login");
-  // };
-  // const handleRegister = () => {
-  //   handleLogOut();
-  //   navigate("/register");
-  // };
+
   return (
     <Navbar
       collapseOnSelect
@@ -81,7 +60,7 @@ function NavBar() {
       data-bs-theme="dark"
       sticky="top"
     >
-      <Container>
+      <Container fluid>
         <Navbar.Brand as={Link} key={"home"} to="/">
           Perpustakaan
         </Navbar.Brand>
@@ -91,10 +70,14 @@ function NavBar() {
           <Nav>
             {Object.keys(user).length !== 0 ? (
               <>
-                <Nav.Link as={Link} key={"login"} to="/login">
+                <Nav.Link as={Link} key={"login"} to="/dashboard">
                   Dashbord
                 </Nav.Link>
-                <NavDropdown title={user.name} id="collapsible-nav-dropdown">
+                <NavDropdown
+                  title={user.name}
+                  id="collapsible-nav-dropdown"
+                  align={{ lg: "end" }}
+                >
                   <NavDropdown.Item href="#action/3.1">
                     Profile
                   </NavDropdown.Item>
